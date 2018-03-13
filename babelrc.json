@@ -1,3 +1,5 @@
 {
-  "presets": ["env"]
+  "presets": ["flow", "env"],
+  "retainLines": true,
+  "plugins": ["transform-flow-strip-types"]
 }
