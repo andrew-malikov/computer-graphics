@@ -14,6 +14,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
+            plugins: ['transform-flow-strip-types', 'transform-class-properties'],
             presets: ['flow', 'env'],
           },
         },
