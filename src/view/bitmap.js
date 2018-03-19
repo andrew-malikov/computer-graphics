@@ -16,6 +16,10 @@ export default class Bitmap {
     this.context.fillRect(x, y, size, size);
   }
 
+  clear() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
   render(): HTMLCanvasElement {
     return this.canvas;
   }

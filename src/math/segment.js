@@ -11,6 +11,14 @@ export default class Segment {
     this.endPoint = endPoint;
   }
 
+  set setStartPoint(value: Point) {
+    this.startPoint = value;
+  }
+
+  set setEndPoint(value: Point) {
+    this.endPoint = value;
+  }
+
   get abscissaLength(): number {
     return Math.abs(this.endPoint.x - this.startPoint.x);
   }
