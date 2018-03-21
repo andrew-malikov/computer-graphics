@@ -13,7 +13,9 @@ Map getLengths(Segment segment) {
 class BresenhamLine extends Line {
   BresenhamLine(String color, num width) : super(color, width);
 
+  /* FIXME: Update method realization */
   void draw(Bitmap bitmap, Segment segment) {
+    if(segment.isPoint()) return;
     Point2D point = segment.start.clone();
     Map lengths = getLengths(segment);
     Point2D directions = new Point2D(segment.abscissaDirection, segment.ordinateDirection);

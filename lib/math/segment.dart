@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'point.dart';
+
 
 class Segment {
   Point2D _start;
@@ -36,5 +39,17 @@ class Segment {
 
   num get longProjectionOnAxis {
     return abscissaLength >= ordinateLength ? abscissaLength : ordinateLength;
+  }
+
+  num get length {
+    return sqrt(pow(end.x - start.x, 2) + pow(end.y - start.y, 2));
+  }
+
+  bool isPoint() {
+    return end == start;
+  }
+
+  String toString() {
+    return '${start}/${end}';
   }
 }

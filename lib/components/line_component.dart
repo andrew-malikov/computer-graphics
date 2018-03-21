@@ -38,13 +38,11 @@ class LineComponent extends Component {
       if (state == State.SetStartPoint) {
         _point = _computePoint(mouseEvent, layer.body);
         _state = State.SetEndPoint;
-        print('${event.timeStamp}-draw-start');
       } else {
         Point2D endPoint = _computePoint(mouseEvent, layer.body);
         tool.draw(layer.body, new Segment(point, endPoint));
         layer.preview.clear();
         _state = State.SetStartPoint;
-        print('${event.timeStamp}-draw-end');
       }
     });
   }
@@ -56,7 +54,6 @@ class LineComponent extends Component {
       layer.preview.clear();
       Point2D endPoint = _computePoint(mouseEvent, layer.preview);
       tool.draw(layer.preview, new Segment(_point, endPoint));
-      print('${event.timeStamp}-preview');
     });
   }
 

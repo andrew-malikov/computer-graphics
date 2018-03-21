@@ -16,8 +16,21 @@ class Point2D {
   num get y => _y;
   void set y(number) => _y = number;
 
-  void log() {
-    print('`${x}-${y}`');
+  /* FIXME: update hash calculation */
+  int hashCode() {
+    int prime = 42;
+    int result = 18;
+    result += prime * x * y;
+    return result;
+  }
+
+  bool operator ==(dynamic point) {
+    if(point is! Point2D) return false;
+    return point.x == x && point.y == y;
+  }
+
+  String toString() {
+    return '`${x}-${y}`';
   }
 }
 
