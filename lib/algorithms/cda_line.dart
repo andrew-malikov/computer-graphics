@@ -1,7 +1,7 @@
-import '../math/point.dart';
-import '../math/segment.dart';
-import '../view/bitmap.dart';
-import 'line.dart';
+import 'Package:GraphicsApp/math/point.dart';
+import 'Package:GraphicsApp/math/segment.dart';
+import 'Package:GraphicsApp/view/bitmap.dart';
+import 'Package:GraphicsApp/algorithms/line.dart';
 
 class CDALine extends Line {
   CDALine(String color, num width) : super(color, width);

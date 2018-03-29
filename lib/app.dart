@@ -1,18 +1,12 @@
 import 'dart:html';
 
-import './math/point.dart';
-import './math/segment.dart';
-import './view/bitmap.dart';
-import './algorithms/cda_line.dart';
-import './algorithms/bresenham_line.dart';
-import './algorithms/circle.dart';
-
-import './algorithms/line.dart';
-import './tools/tool.dart';
-import './tools/line_tool.dart';
-import './tools/circle_tool.dart';
-import './view/layer.dart';
-
+import 'Package:GraphicsApp/algorithms/cda_line.dart';
+import 'Package:GraphicsApp/algorithms/bresenham_line.dart';
+import 'Package:GraphicsApp/algorithms/circle.dart';
+import 'Package:GraphicsApp/tools/tool.dart';
+import 'Package:GraphicsApp/tools/line_tool.dart';
+import 'Package:GraphicsApp/tools/circle_tool.dart';
+import 'Package:GraphicsApp/view/layer.dart';
 
 class Application {
   List<Tool> _components;
@@ -78,9 +72,8 @@ void initializeApp() {
   document.body.append(mainLayer.preview.canvas);
 
   LineTool cdaLine = new LineTool(new CDALine('#71b2b2', 1));
-  LineTool bresenhamLine =
-      new LineTool(new BresenhamLine('#f2b271', 1));
-  
+  LineTool bresenhamLine = new LineTool(new BresenhamLine('#f2b271', 1));
+
   Circle circle = new Circle('#336655', 1);
   CircleTool circleComponent = new CircleTool(circle);
 

@@ -1,5 +1,5 @@
-import '../view/layer.dart';
-import '../data/icons.dart';
+import 'Package:GraphicsApp/view/layer.dart';
+import 'Package:GraphicsApp/data/icons.dart';
 
 class ToolMetadata {
   String _name;

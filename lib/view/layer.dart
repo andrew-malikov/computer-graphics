@@ -1,4 +1,4 @@
-import 'bitmap.dart';
+import 'Package:GraphicsApp/view/bitmap.dart';
 
 class Layer {
   Bitmap _body;

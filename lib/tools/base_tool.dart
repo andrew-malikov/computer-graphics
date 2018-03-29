@@ -1,9 +1,9 @@
-import '../view/bitmap.dart';
-import '../view/layer.dart';
-import '../math/point.dart';
-import 'tool.dart';
-
 import 'dart:html';
+
+import 'Package:GraphicsApp/view/bitmap.dart';
+import 'Package:GraphicsApp/view/layer.dart';
+import 'Package:GraphicsApp/math/point.dart';
+import 'Package:GraphicsApp/tools/tool.dart';
 
 enum State { SetStartPoint, SetEndPoint }
 

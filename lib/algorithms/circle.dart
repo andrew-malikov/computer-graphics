@@ -1,6 +1,6 @@
-import '../view/bitmap.dart';
-import '../math/point.dart';
-import '../math/segment.dart';
+import 'Package:GraphicsApp/view/bitmap.dart';
+import 'Package:GraphicsApp/math/point.dart';
+import 'Package:GraphicsApp/math/segment.dart';
 
 class Circle {
   String _color;

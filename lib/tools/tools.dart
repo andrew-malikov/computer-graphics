@@ -1,6 +1,6 @@
-import 'package:TestCG/interfaces/i_observable.dart';
-import 'package:TestCG/interfaces/i_observer.dart';
-import 'package:TestCG/tools/tool.dart';
+import 'Package:GraphicsApp/interfaces/i_observable.dart';
+import 'Package:GraphicsApp/interfaces/i_observer.dart';
+import 'Package:GraphicsApp/tools/tool.dart';
 
 class Tools implements IObserveable {
   List<Tool> _tools;

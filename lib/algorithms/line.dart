@@ -1,5 +1,5 @@
-import '../view/bitmap.dart';
-import '../math/segment.dart';
+import 'Package:GraphicsApp/view/bitmap.dart';
+import 'Package:GraphicsApp/math/segment.dart';
 
 abstract class Line {
   String _color;

@@ -1,4 +1,4 @@
-import 'i_observer.dart';
+import 'Package:GraphicsApp/interfaces/i_observer.dart';
 
 abstract class IObserveable {
   void addObserver(IObserver observer);

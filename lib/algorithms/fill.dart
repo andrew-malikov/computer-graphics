@@ -1,7 +1,7 @@
-import '../view/bitmap.dart';
-import '../math/point.dart';
-
 import 'dart:collection';
+
+import 'Package:GraphicsApp/view/bitmap.dart';
+import 'Package:GraphicsApp/math/point.dart';
 
 class Fill {
   String _color;
@@ -24,8 +24,8 @@ class Fill {
     }
   }
 
-  void _addNearPointsToQueue(Bitmap bitmap, Point2D point, ListQueue<Point2D> queue,
-      String baseColor) {
+  void _addNearPointsToQueue(Bitmap bitmap, Point2D point,
+      ListQueue<Point2D> queue, String baseColor) {
     List<Point2D> checkPoints = [
       Point2DManipulator.moveUp(point),
       Point2DManipulator.moveRight(point),

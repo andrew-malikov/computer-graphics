@@ -1,13 +1,11 @@
-import '../view/bitmap.dart';
-import '../view/layer.dart';
-import '../algorithms/line.dart';
-import '../math/point.dart';
-import '../math/segment.dart';
-import '../tools/base_tool.dart';
-import 'tool.dart';
-import '../data/icons.dart';
-
 import 'dart:html';
+
+import 'Package:GraphicsApp/algorithms/line.dart';
+import 'Package:GraphicsApp/math/point.dart';
+import 'Package:GraphicsApp/math/segment.dart';
+import 'Package:GraphicsApp/tools/base_tool.dart';
+import 'Package:GraphicsApp/tools/tool.dart';
+import 'Package:GraphicsApp/data/icons.dart';
 
 class LineTool extends BaseTool {
   State _state;

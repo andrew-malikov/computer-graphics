@@ -1,15 +1,11 @@
 import 'dart:html';
 
-import 'tool.dart';
-import 'base_tool.dart';
-import '../algorithms/circle.dart';
-
-import '../view/bitmap.dart';
-
-import '../math/point.dart';
-import '../math/segment.dart';
-
-import '../data/icons.dart';
+import 'Package:GraphicsApp/tools/tool.dart';
+import 'Package:GraphicsApp/tools/base_tool.dart';
+import 'Package:GraphicsApp/algorithms/circle.dart';
+import 'Package:GraphicsApp/math/point.dart';
+import 'Package:GraphicsApp/math/segment.dart';
+import 'Package:GraphicsApp/data/icons.dart';
 
 class CircleTool extends BaseTool {
   State _state;

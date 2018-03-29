@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'point.dart';
+import 'Package:GraphicsApp/math/point.dart';
 
 
 class Segment {

@@ -1,8 +1,7 @@
-import 'package:TestCG/interfaces/i_observer.dart';
-import 'package:TestCG/tools/tool.dart';
-import 'package:TestCG/view/layer.dart';
-
-import 'package:TestCG/tools/tools.dart';
+import 'Package:GraphicsApp/interfaces/i_observer.dart';
+import 'Package:GraphicsApp/tools/tool.dart';
+import 'Package:GraphicsApp/view/layer.dart';
+import 'Package:GraphicsApp/tools/tools.dart';
 
 class DrawManager implements IObserver {
   Tools _tools;
