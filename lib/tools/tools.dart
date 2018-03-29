@@ -1,0 +1,46 @@
+import 'package:TestCG/interfaces/i_observable.dart';
+import 'package:TestCG/interfaces/i_observer.dart';
+import 'package:TestCG/tools/tool.dart';
+
+class Tools implements IObserveable {
+  List<Tool> _tools;
+  List<IObserver> _observers;
+  Tool _temporaryTool;
+
+  Tools() {
+    _tools = new List<Tool>();
+    _observers = new List<IObserver>();
+  }
+
+  void addTool(Tool tool) {
+    list.add(tool);
+    _temporaryTool = tool;
+    NotifyObservers();
+  }
+
+  bool removeTool(Tool tool) {
+    bool result = list.remove(tool);
+    _temporaryTool = tool;
+    if (result) NotifyObservers();
+    return result;
+  }
+
+  @override
+  void addObserver(IObserver observer) {
+    _observers.add(observer);
+  }
+
+  @override
+  void removeObserver(IObserver observer) {
+    _observers.remove(observer);
+  }
+
+  @override
+  void NotifyObservers() {
+    for (IObserver observer in _observers) {
+      observer.Update(_temporaryTool);
+    }
+  }
+
+  List<Tool> get list => _tools;
+}
