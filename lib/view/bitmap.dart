@@ -14,13 +14,18 @@ class Bitmap {
     context.fillRect(x, y, size, size);
   }
 
+  String getPixel(int x, int y, int size) {
+    ImageData data = context.getImageData(x, y, size, size);
+    return "rgba(${data.data[0]},${data.data[1]},${data.data[2]},${data.data[3]})";
+  }
+
   void clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
   }
 
   void resize(int width, int height) {
     canvas.width = width;
-    canvas.height = height; 
+    canvas.height = height;
   }
 
   CanvasElement get canvas => _canvas;

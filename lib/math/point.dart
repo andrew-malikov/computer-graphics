@@ -25,7 +25,7 @@ class Point2D {
   }
 
   bool operator ==(dynamic point) {
-    if(point is! Point2D) return false;
+    if (point is! Point2D) return false;
     return point.x == x && point.y == y;
   }
 
@@ -38,3 +38,9 @@ class Point2DBuilder {
   static Point2D defaultPoint() => new Point2D(0, 0);
 }
 
+class Point2DManipulator {
+  static Point2D moveUp(Point2D point) => point + new Point2D(0, -1);
+  static Point2D moveRight(Point2D point) => point + new Point2D(1, 0);
+  static Point2D moveDown(Point2D point) => point + new Point2D(0, 1);
+  static Point2D moveLeft(Point2D point) => point + new Point2D(-1, 0);
+}
