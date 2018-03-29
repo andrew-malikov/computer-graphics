@@ -9,12 +9,14 @@ import '../view/bitmap.dart';
 import '../math/point.dart';
 import '../math/segment.dart';
 
+import '../data/icons.dart';
+
 class CircleTool extends BaseTool {
   State _state;
   Point2D _point;
   Circle _tool;
 
-  CircleTool(Circle tool) : super(null) {
+  CircleTool(Circle tool) : super(new ToolMetadata('circle', Icons['circle'])) {
     _state = State.SetStartPoint;
     _point = Point2DBuilder.defaultPoint();
     _tool = tool;
