@@ -3,31 +3,33 @@ import 'dart:html';
 import './math/point.dart';
 import './math/segment.dart';
 import './view/bitmap.dart';
-import './tools/cda_line.dart';
-import './tools/bresenham_line.dart';
+import './algorithms/cda_line.dart';
+import './algorithms/bresenham_line.dart';
+import './algorithms/circle.dart';
 
-import './tools/line.dart';
-import './components/component.dart';
-import './components/line_component.dart';
+import './algorithms/line.dart';
+import './tools/tool.dart';
+import './tools/line_tool.dart';
+import './tools/circle_tool.dart';
 import './view/layer.dart';
 
 
 class Application {
-  List<Component> _components;
+  List<Tool> _components;
   List<Layer> _layers;
-  Component _currentTool;
+  Tool _currentTool;
   Layer _currentLayer;
 
   Application() {
-    _components = new List<Component>();
+    _components = new List<Tool>();
     _layers = new List<Layer>();
   }
 
-  void addComponent(Component component) {
+  void addComponent(Tool component) {
     if (!_components.contains(component)) _components.add(component);
   }
 
-  void removeComponent(Component component) {
+  void removeComponent(Tool component) {
     if (!_components.contains(component)) return;
     if (currentTool == component) currentTool = null;
     component.unsetLayer();
@@ -49,8 +51,8 @@ class Application {
     currentTool.unsetLayer();
   }
 
-  Component get currentTool => _currentTool;
-  void set currentTool(Component component) {
+  Tool get currentTool => _currentTool;
+  void set currentTool(Tool component) {
     if (!_components.contains(component)) return;
     if (hasCurrentTool()) currentTool.unsetLayer();
     component.layer = currentLayer;
@@ -75,14 +77,20 @@ void initializeApp() {
   document.body.append(mainLayer.body.canvas);
   document.body.append(mainLayer.preview.canvas);
 
-  LineComponent cdaLine = new LineComponent(new CDALine('#71b2b2', 1));
-  LineComponent bresenhamLine =
-      new LineComponent(new BresenhamLine('#f2b271', 1));
+  LineTool cdaLine = new LineTool(new CDALine('#71b2b2', 1));
+  LineTool bresenhamLine =
+      new LineTool(new BresenhamLine('#f2b271', 1));
+  
+  Circle circle = new Circle('#336655', 1);
+  CircleTool circleComponent = new CircleTool(circle);
+
+  // circle.draw(mainLayer.body, new Segment(new Point2D(50, 50), new Point2D(60, 60)));
 
   app.addLayer(mainLayer);
   app.addComponent(bresenhamLine);
   app.addComponent(cdaLine);
+  app.addComponent(circleComponent);
 
   app.currentLayer = mainLayer;
-  app.currentTool = cdaLine;
+  app.currentTool = bresenhamLine;
 }

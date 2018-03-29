@@ -10,6 +10,7 @@ class Circle {
 
   Circle.standart() : this('#000', 1);
 
+  // TODO: Update method realization
   void draw(Bitmap bitmap, Segment segment) {
     num length = segment.length.ceil();
     if (length <= 1) return;
