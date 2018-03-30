@@ -26,12 +26,12 @@ class Tools implements IObserveable {
   }
 
   @override
-  void addObserver(IObserver observer) {
+  void subscribeObserver(IObserver observer) {
     _observers.add(observer);
   }
 
   @override
-  void removeObserver(IObserver observer) {
+  void unsubscribeObserver(IObserver observer) {
     _observers.remove(observer);
   }
 

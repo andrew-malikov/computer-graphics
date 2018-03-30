@@ -8,6 +8,9 @@ import 'Package:GraphicsApp/tools/line_tool.dart';
 import 'Package:GraphicsApp/tools/circle_tool.dart';
 import 'Package:GraphicsApp/view/layer.dart';
 
+import 'package:GraphicsApp/components/toolbox.dart';
+import 'package:GraphicsApp/tools/tools.dart';
+
 class Application {
   List<Tool> _components;
   List<Layer> _layers;
@@ -64,7 +67,7 @@ class Application {
 }
 
 void initializeApp() {
-  Application app = new Application();
+  /* Application app = new Application();
 
   Layer mainLayer = new Layer(640, 480);
   mainLayer.body.canvas.style.zIndex = '3';
@@ -85,5 +88,24 @@ void initializeApp() {
   app.addComponent(circleComponent);
 
   app.currentLayer = mainLayer;
-  app.currentTool = bresenhamLine;
+  app.currentTool = bresenhamLine; */
+
+  Layer mainLayer = new Layer(640, 480);
+  mainLayer.body.canvas.style.zIndex = '3';
+  document.body.append(mainLayer.body.canvas);
+  document.body.append(mainLayer.preview.canvas);
+
+  LineTool cdaLine = new LineTool(new CDALine('#71b2b2', 1));
+  LineTool bresenhamLine = new LineTool(new BresenhamLine('#f2b271', 1));
+
+  CircleTool circle = new CircleTool(new Circle('#336655', 1));
+
+  Tools tools = new Tools();
+  Toolbox toolbox = new Toolbox(tools);
+
+  document.body.append(toolbox.render);
+
+  tools.addTool(cdaLine);
+  tools.addTool(bresenhamLine);
+  tools.addTool(circle);
 }

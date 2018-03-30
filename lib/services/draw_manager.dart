@@ -10,7 +10,7 @@ class DrawManager implements IObserver {
 
   DrawManager(Tools tools) {
     _tools = tools;
-    _tools.addObserver(this);
+    _tools.subscribeObserver(this);
   }
 
   void addTool(Tool tool) {
@@ -49,4 +49,8 @@ class DrawManager implements IObserver {
 
   bool hasCurrentTool() => currentTool != null;
   bool isCurrentTool(Tool tool) => tool == currentTool;
+
+  void unsubscribe() {
+    _tools.unsubscribeObserver(this);
+  } 
 }
