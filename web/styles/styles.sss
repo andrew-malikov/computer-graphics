@@ -1,5 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto)
 
+:root
+  --black: hsl(0, 0%, 4%)
+  --white: hsl(0, 0%, 100%)
+  --black: hsl(0, 0%, 4%)
+  --light: hsl(0, 0%, 96%)
+  --dark:	hsl(0, 0%, 21%)	
+  --primary: hsl(171, 100%, 41%)
+  --link: hsl(217, 71%, 53%)
+  --info: hsl(204, 86%, 53%)
+  --success: hsl(141, 71%, 48%)
+  --warning: hsl(48, 100%, 67%)
+  --danger: hsl(348, 100%, 61%)
+
 html, body 
   width: 100%
   height: 100%
@@ -8,10 +21,7 @@ html, body
   font-family: 'Roboto', sans-serif
 
 .layer
-  margin: 20px
-  border-width: 5px
-  border-style: solid
-  border-color: #fdfdaf
+  box-shadow: 0 2px 3px color(var(--black) alpha(10%)), 0 0 0 1px color(var(--black) alpha(10%))
   width: fit-content
   height: fit-content
 
@@ -20,3 +30,20 @@ html, body
   position: absolute
   color: white
 
+.toolbox
+  display: flex
+
+.toolbox > *
+  margin-left: 5px
+  margin-right: 5px
+
+.card
+  width: fit-content
+  height: fit-content
+
+.frame
+  display: flex
+
+.frame > *
+  margin-left: 10px
+  margin-right: 10px
