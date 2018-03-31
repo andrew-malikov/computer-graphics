@@ -10,3 +10,12 @@ pubspec.lock
 
 # Directory created by dartdoc
 doc/api/
+
+# yarn logs
+yarn-error.log
+
+# nodejs modules
+node_modules/
+
+# parcel cache
+.cache/

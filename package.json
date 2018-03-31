@@ -1,0 +1,20 @@
+{
+  "name": "computer-graphics",
+  "version": "0.0.5",
+  "scripts": {
+    "postcss": "node_modules/postcss-cli/bin/postcss web/styles/styles.sss -o web/styles.css"
+  },
+  "description": "Simple web application for drawing",
+  "repository": "https://github.com/markupCode/computer-graphics",
+  "author": "andrew malikov <andrew.devels@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cssnano": "^3.10.0",
+    "postcss": "^6.0.21",
+    "postcss-cli": "^5.0.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "stylelint": "^9.1.3",
+    "sugarss": "^1.0.1"
+  }
+}
