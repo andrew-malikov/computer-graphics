@@ -31,6 +31,7 @@ class Bitmap {
   CanvasElement get canvas => _canvas;
   void set canvas(CanvasElement canvas) {
     _canvas = canvas;
+    _canvas.classes.add('bitmap');
     _context = canvas.getContext('2d');
   }
 
