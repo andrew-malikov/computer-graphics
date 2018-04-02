@@ -8,6 +8,7 @@ import 'Package:GraphicsApp/tools/line_tool.dart';
 import 'Package:GraphicsApp/tools/circle_tool.dart';
 import 'Package:GraphicsApp/view/layer.dart';
 
+import 'package:GraphicsApp/components/colorPicker.dart';
 import 'package:GraphicsApp/components/toolbox.dart';
 import 'package:GraphicsApp/services/draw_manager.dart';
 import 'package:GraphicsApp/tools/tools.dart';
@@ -83,11 +84,16 @@ void initializeApp() {
   tools.addTool(bresenhamLine);
   tools.addTool(circle);
 
-  CardComponent card = new CardComponent("Tools", toolbox.render);
+  ColorPicker colorPicker = new ColorPicker();
+
+  CardComponent toolsCard = new CardComponent("Tools", toolbox.render);
+  CardComponent colorPickerCard =
+      new CardComponent("ColorPicker", colorPicker.render);
 
   DrawManager manager = new DrawManager(tools);
   manager.layer = mainLayer;
 
-  document.querySelector('#mainFrame').append(card.render);
+  document.querySelector('#mainFrame').append(toolsCard.render);
   document.querySelector('#mainFrame').append(mainLayer.render);
+  document.querySelector('#mainFrame').append(colorPickerCard.render);
 }
