@@ -16,13 +16,13 @@ class Point2D {
   num get y => _y;
   void set y(number) => _y = number;
 
-  /* FIXME: update hash calculation */
-  int hashCode() {
+  /* TODO: update hash calculation */
+  /* int hashCode() {
     int prime = 42;
     int result = 18;
     result += prime * x * y;
     return result;
-  }
+  } */
 
   bool operator ==(dynamic point) {
     if (point is! Point2D) return false;

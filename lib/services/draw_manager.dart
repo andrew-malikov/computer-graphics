@@ -6,7 +6,6 @@ import 'Package:GraphicsApp/tools/tools.dart';
 class DrawManager implements IObserver {
   Tools _tools;
   Layer _layer;
-  Tool _currentTool;
 
   DrawManager(Tools tools) {
     _tools = tools;
@@ -18,12 +17,12 @@ class DrawManager implements IObserver {
   }
 
   bool removeTool(Tool tool) {
-    if (isCurrentTool(tool)) tool.removeEvents();
+    if (_tools.isCurrentTool(tool)) tool.removeEvents();
     return _tools.removeTool(tool);
   }
 
   void set layer(Layer layer) {
-    if (hasCurrentTool()) currentTool.layer = layer;
+    if (_tools.hasCurrentTool()) _tools.currentTool.layer = layer;
     _layer = layer;
   }
 
@@ -31,26 +30,22 @@ class DrawManager implements IObserver {
 
   void set currentTool(Tool tool) {
     if (!_tools.list.contains(tool)) return;
-    if (hasCurrentTool()) currentTool.unsetLayer();
+    if (_tools.hasCurrentTool()) _tools.currentTool.unsetLayer();
     tool.layer = layer;
-    currentTool = tool;
+    _tools.currentTool = tool;
   }
-
-  Tool get currentTool => _currentTool;
 
   @override
   void Update(Object object) {
-    if (_tools.list.contains(object as Tool)) return;
-    if (isCurrentTool(object as Tool)) {
-      currentTool.unsetLayer();
-      currentTool = null;
+    TransmittedMessage message = object as TransmittedMessage;
+    if (message.state == TransmittedState.Set) {
+      if (message.tool != null) message.tool.unsetLayer();
+      if (_tools.hasCurrentTool()) _tools.currentTool.layer = layer;
+      print("Layer is setup");
     }
   }
 
-  bool hasCurrentTool() => currentTool != null;
-  bool isCurrentTool(Tool tool) => tool == currentTool;
-
   void unsubscribe() {
     _tools.unsubscribeObserver(this);
-  } 
+  }
 }

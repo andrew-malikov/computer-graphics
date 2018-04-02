@@ -9,7 +9,9 @@ import 'Package:GraphicsApp/tools/circle_tool.dart';
 import 'Package:GraphicsApp/view/layer.dart';
 
 import 'package:GraphicsApp/components/toolbox.dart';
+import 'package:GraphicsApp/services/draw_manager.dart';
 import 'package:GraphicsApp/tools/tools.dart';
+import 'package:GraphicsApp/components/card.dart';
 
 class Application {
   List<Tool> _components;
@@ -67,33 +69,7 @@ class Application {
 }
 
 void initializeApp() {
-  /* Application app = new Application();
-
   Layer mainLayer = new Layer(640, 480);
-  mainLayer.body.canvas.style.zIndex = '3';
-  document.body.append(mainLayer.body.canvas);
-  document.body.append(mainLayer.preview.canvas);
-
-  LineTool cdaLine = new LineTool(new CDALine('#71b2b2', 1));
-  LineTool bresenhamLine = new LineTool(new BresenhamLine('#f2b271', 1));
-
-  Circle circle = new Circle('#336655', 1);
-  CircleTool circleComponent = new CircleTool(circle);
-
-  // circle.draw(mainLayer.body, new Segment(new Point2D(50, 50), new Point2D(60, 60)));
-
-  app.addLayer(mainLayer);
-  app.addComponent(bresenhamLine);
-  app.addComponent(cdaLine);
-  app.addComponent(circleComponent);
-
-  app.currentLayer = mainLayer;
-  app.currentTool = bresenhamLine; */
-
-  Layer mainLayer = new Layer(640, 480);
-  mainLayer.body.canvas.style.zIndex = '3';
-  document.body.append(mainLayer.body.canvas);
-  document.body.append(mainLayer.preview.canvas);
 
   LineTool cdaLine = new LineTool(new CDALine('#71b2b2', 1));
   LineTool bresenhamLine = new LineTool(new BresenhamLine('#f2b271', 1));
@@ -103,9 +79,15 @@ void initializeApp() {
   Tools tools = new Tools();
   Toolbox toolbox = new Toolbox(tools);
 
-  document.body.append(toolbox.render);
-
   tools.addTool(cdaLine);
   tools.addTool(bresenhamLine);
   tools.addTool(circle);
+
+  CardComponent card = new CardComponent("Tools", toolbox.render);
+
+  DrawManager manager = new DrawManager(tools);
+  manager.layer = mainLayer;
+
+  document.querySelector('#mainFrame').append(card.render);
+  document.querySelector('#mainFrame').append(mainLayer.render);
 }

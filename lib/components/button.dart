@@ -16,6 +16,7 @@ class Button {
 
   void _setUpComponent() {
     _root = new ButtonElement();
+    _root.classes.add('button');
     _root.append(icon.render());
     _root.addEventListener('click', _action);
     _root.id = id;

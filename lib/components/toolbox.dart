@@ -19,15 +19,18 @@ class Toolbox implements IObserver {
 
   void _setUpComponent() {
     _root = new DivElement();
+    _root.classes.add('toolbox');
     for (Tool tool in _tools.list) {
-      Button button = new Button(tool.metadata.icon, click);
+      Button button = new Button(tool.metadata.icon, (Event event) {
+        click(event, tool);
+      });
       buttons.add(button);
       _root.append(button.render);
     }
   }
 
-  void click(Event event) {
-    print("${event.timeStamp}");
+  void click(Event event, Tool tool) {
+    tools.currentTool = tool;
   }
 
   HtmlElement get render => _root;
@@ -37,17 +40,19 @@ class Toolbox implements IObserver {
 
   @override
   void Update(Object object) {
-    Tool tool = object as Tool;
-    if (!_tools.list.contains(tool)) {
+    TransmittedMessage message = object as TransmittedMessage;
+    if (message.state == TransmittedState.Add) {
+      Button button = new Button(message.tool.metadata.icon, (Event event) {
+        click(event, message.tool);
+      });
+      buttons.add(button);
+      _root.append(button.render);
+    } else if (message.state == TransmittedState.Remove) {
       Button removedButton = buttons.firstWhere((item) {
-        item.icon == tool.metadata.icon;
+        item.icon == message.tool.metadata.icon;
       });
       buttons.remove(removedButton);
       _root.childNodes.remove(removedButton.render);
-    } else {
-      Button button = new Button(tool.metadata.icon, click);
-      buttons.add(button);
-      _root.append(button.render);
     }
   }
 

@@ -25,6 +25,6 @@ class Icon {
 }
 
 Map<String, Icon> Icons = {
-  'line': new Icon('line', 'resources/Icons/Paint/line_01.svg', 32),
-  'circle': new Icon('circle', 'resources/Icons/Paint/circle_01.svg', 32)
+  'line': new Icon('line', 'resources/Icons/Paint/line_01.svg', 16),
+  'circle': new Icon('circle', 'resources/Icons/Paint/circle_01.svg', 16)
 };
