@@ -5,16 +5,18 @@ class Channel {
     this.value = value;
   }
 
+  Channel get clone => new Channel(value);
+
   int get value => _value;
   void set value(num value) {
     _value = Bound(value, 255);
   }
 
-  String get toString {
+  String toString() {
     return value.toString();
   }
 
-  String get toHexString {
+  String toHexString() {
     return value.toRadixString(16);
   }
 }
@@ -30,26 +32,41 @@ class Color {
     _channels['alpha'] = alpha;
   }
 
+  void update(Color color) {
+    channels['red'] = color.channels['red'].clone;
+    channels['green'] = color.channels['green'].clone;
+    channels['blue'] = color.channels['blue'].clone;
+    channels['alpha'] = color.channels['alpha'].clone;
+  }
+
+  Color get clone {
+    Channel red = channels['red'].clone;
+    Channel green = channels['green'].clone;
+    Channel blue = channels['blue'].clone;
+    Channel alpha = channels['alpha'].clone;
+    return new Color(red, green, blue, alpha);
+  }
+
   Map<String, Channel> get channels => _channels;
 
-  String get toRGBString {
-    return "rgb(${channels['red'].toString},${channels['green'].toString}," +
-        "${channels['blue'].toString})";
+  String toRGBString() {
+    return "rgb(${channels['red'].toString()},${channels['green'].toString()}," +
+        "${channels['blue'].toString()})";
   }
 
-  String get toRGBAString {
-    return "rgba(${channels['red'].toString},${channels['green'].toString}," +
-        "${channels['blue'].toString},${channels['alpha'].toString})";
+  String toRGBAString() {
+    return "rgba(${channels['red'].toString()},${channels['green'].toString()}," +
+        "${channels['blue'].toString()},${channels['alpha'].toString()})";
   }
 
-  String get toRGBHexString {
-    return "#${channels['red'].toHexString}${channels['green'].toHexString}" +
-        "${channels['blue'].toHexString}";
+  String toRGBHexString() {
+    return "#${channels['red'].toHexString()}${channels['green'].toHexString()}" +
+        "${channels['blue'].toHexString()}";
   }
 
-  String get toRGBAHexString {
-    return "#${channels['red'].toHexString}${channels['green'].toHexString}" +
-        "${channels['blue'].toHexString}${channels['alpha'].toHexString}";
+  String toRGBAHexString() {
+    return "#${channels['red'].toHexString()}${channels['green'].toHexString()}" +
+        "${channels['blue'].toHexString()}${channels['alpha'].toHexString()}";
   }
 }
 
@@ -61,7 +78,7 @@ int Bound(num value, int maxValue) {
 
 // TODO: Check symbols
 bool IsValidHex(String hexValue) {
-  return hexValue.length < 1 || hexValue.length > 2;
+  return hexValue.length >= 1 && hexValue.length <= 2;
 }
 
 String RecoverHex(String hexValue) {
@@ -96,17 +113,17 @@ class ColorBuilder {
 
   static Color FullRGBHex(String color) {
     String red, green, blue;
-    if (color.length == 3) {
-      red = color[0];
-      green = color[1];
-      blue = color[2];
+    if (color.length == 4) {
+      red = color[1];
+      green = color[2];
+      blue = color[3];
     }
-    if (color.length == 6) {
-      red = color.substring(0, 2);
-      green = color.substring(2, 4);
-      blue = color.substring(4);
+    if (color.length == 7) {
+      red = color.substring(1, 3);
+      green = color.substring(3, 5);
+      blue = color.substring(5);
     }
-    if (red.isEmpty || green.isEmpty || blue.isEmpty)
+    if (red == null || green == null || blue == null)
       throw new ArgumentError("Cannot use invalid value: $color");
     return ColorBuilder.RGBHex(red, green, blue);
   }
@@ -120,15 +137,15 @@ class ColorBuilder {
   static Color FullRGBAHex(String color) {
     String alpha;
     Color rgbaColor;
-    if (color.length == 4) {
-      rgbaColor = ColorBuilder.FullRGBHex(color.substring(0, 3));
-      alpha = color.substring(3);
+    if (color.length == 5) {
+      rgbaColor = ColorBuilder.FullRGBHex(color.substring(1, 4));
+      alpha = color.substring(4);
     }
-    if (color.length == 8) {
-      rgbaColor = ColorBuilder.FullRGBHex(color.substring(0, 6));
-      alpha = color.substring(6);
+    if (color.length == 9) {
+      rgbaColor = ColorBuilder.FullRGBHex(color.substring(1, 7));
+      alpha = color.substring(7);
     }
-    if (alpha.isEmpty)
+    if (alpha == null)
       throw new ArgumentError("Cannot use invalid value: $color");
     rgbaColor.channels['alpha'] = ChannelBuilder.Hex(alpha);
     return rgbaColor;
