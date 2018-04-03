@@ -1,3 +1,4 @@
+// TODO: Override hashCode() method
 class Channel {
   int _value;
 
@@ -12,6 +13,11 @@ class Channel {
     _value = Bound(value, 255);
   }
 
+  bool operator ==(dynamic channel) {
+    if (channel is! Channel) return false;
+    return channel.value == value;
+  }
+
   String toString() {
     return value.toString();
   }
@@ -21,6 +27,7 @@ class Channel {
   }
 }
 
+// TODO: Override hashCode() method
 class Color {
   Map<String, Channel> _channels;
 
@@ -48,6 +55,19 @@ class Color {
   }
 
   Map<String, Channel> get channels => _channels;
+
+  bool operator ==(dynamic color) {
+    if (color is! Color) return false;
+    return _isEqualChannels(color);
+  }
+
+  bool _isEqualChannels(Color color) {
+    for (String key in channels.keys) {
+      if (!color.channels.containsKey(key)) return false;
+      if (channels[key] != color.channels[key]) return false;
+    }
+    return true;
+  }
 
   String toRGBString() {
     return "rgb(${channels['red'].toString()},${channels['green'].toString()}," +
@@ -151,3 +171,8 @@ class ColorBuilder {
     return rgbaColor;
   }
 }
+
+Map<String, Color> DefaultColors = {
+  'white': ColorBuilder.FullRGBHex('#fff'),
+  'black': ColorBuilder.FullRGBHex('#000')
+};
