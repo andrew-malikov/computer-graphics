@@ -1,14 +1,13 @@
 import 'Package:GraphicsApp/view/bitmap.dart';
 import 'Package:GraphicsApp/math/point.dart';
 import 'Package:GraphicsApp/math/segment.dart';
+import 'package:GraphicsApp/data/color.dart';
 
 class Circle {
-  String _color;
+  Color _color;
   num _width;
 
   Circle(this._color, this._width) {}
-
-  Circle.standart() : this('#000', 1);
 
   // TODO: Update method realization
   void draw(Bitmap bitmap, Segment segment) {
@@ -66,7 +65,7 @@ class Circle {
     bitmap.setPixel(center.x + point.x, center.y - point.y, width, color);
   }
 
-  String get color => _color;
+  Color get color => _color;
   void set color(color) => _color = color;
 
   num get width => _width;

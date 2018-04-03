@@ -2,9 +2,10 @@ import 'Package:GraphicsApp/math/point.dart';
 import 'Package:GraphicsApp/math/segment.dart';
 import 'Package:GraphicsApp/view/bitmap.dart';
 import 'Package:GraphicsApp/algorithms/line.dart';
+import 'package:GraphicsApp/data/color.dart';
 
 class CDALine extends Line {
-  CDALine(String color, num width) : super(color, width);
+  CDALine(Color color, num width) : super(color, width);
 
   void draw(Bitmap bitmap, Segment segment) {
     num length = segment.longProjectionOnAxis;

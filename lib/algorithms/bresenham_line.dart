@@ -2,6 +2,7 @@ import 'Package:GraphicsApp/math/point.dart';
 import 'Package:GraphicsApp/math/segment.dart';
 import 'Package:GraphicsApp/view/bitmap.dart';
 import 'Package:GraphicsApp/algorithms/line.dart';
+import 'package:GraphicsApp/data/color.dart';
 
 Map getLengths(Segment segment) {
   num dx = segment.abscissaLength;
@@ -11,7 +12,7 @@ Map getLengths(Segment segment) {
 }
 
 class BresenhamLine extends Line {
-  BresenhamLine(String color, num width) : super(color, width);
+  BresenhamLine(Color color, num width) : super(color, width);
 
   void draw(Bitmap bitmap, Segment segment) {
     if(segment.isPoint()) return;
