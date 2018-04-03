@@ -48,5 +48,5 @@ class CircleTool extends BaseTool {
   Point2D get point => _point;
 
   Circle get tool => _tool;
-  void set(Circle tool) => _tool = tool;
+  void set tool(Circle tool) => _tool = tool;
 }

@@ -46,7 +46,7 @@ class LineTool extends BaseTool {
   Point2D get point => _point;
 
   Line get tool => _tool;
-  void set(Line tool) => _tool = tool;
+  void set tool(Line tool) => _tool = tool;
 
   State get state => _state;
 }

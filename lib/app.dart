@@ -8,9 +8,12 @@ import 'Package:GraphicsApp/tools/line_tool.dart';
 import 'Package:GraphicsApp/tools/circle_tool.dart';
 import 'Package:GraphicsApp/view/layer.dart';
 
+import 'package:GraphicsApp/algorithms/simple_fill.dart';
 import 'package:GraphicsApp/components/colorPicker.dart';
 import 'package:GraphicsApp/components/toolbox.dart';
+import 'package:GraphicsApp/data/color.dart';
 import 'package:GraphicsApp/services/draw_manager.dart';
+import 'package:GraphicsApp/tools/simple_fill_tool.dart';
 import 'package:GraphicsApp/tools/tools.dart';
 import 'package:GraphicsApp/components/card.dart';
 
@@ -72,10 +75,16 @@ class Application {
 void initializeApp() {
   Layer mainLayer = new Layer(640, 480);
 
-  LineTool cdaLine = new LineTool(new CDALine('#71b2b2', 1));
-  LineTool bresenhamLine = new LineTool(new BresenhamLine('#f2b271', 1));
+  ColorPicker colorPicker = new ColorPicker();
 
-  CircleTool circle = new CircleTool(new Circle('#336655', 1));
+  LineTool cdaLine = new LineTool(new CDALine(colorPicker.color, 1));
+  LineTool bresenhamLine =
+      new LineTool(new BresenhamLine(colorPicker.color, 1));
+
+  CircleTool circle = new CircleTool(new Circle(colorPicker.color, 1));
+
+  SimpleFillTool fillTool =
+      new SimpleFillTool(new SimpleFill(colorPicker.color));
 
   Tools tools = new Tools();
   Toolbox toolbox = new Toolbox(tools);
@@ -83,8 +92,7 @@ void initializeApp() {
   tools.addTool(cdaLine);
   tools.addTool(bresenhamLine);
   tools.addTool(circle);
-
-  ColorPicker colorPicker = new ColorPicker();
+  tools.addTool(fillTool);
 
   CardComponent toolsCard = new CardComponent("Tools", toolbox.render);
   CardComponent colorPickerCard =

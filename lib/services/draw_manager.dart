@@ -41,7 +41,6 @@ class DrawManager implements IObserver {
     if (message.state == TransmittedState.Set) {
       if (message.tool != null) message.tool.unsetLayer();
       if (_tools.hasCurrentTool()) _tools.currentTool.layer = layer;
-      print("Layer is setup");
     }
   }
 

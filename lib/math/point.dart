@@ -6,6 +6,11 @@ class Point2D {
 
   Point2D clone() => new Point2D(x, y);
 
+  void round() {
+    x = x.round();
+    y = y.round();
+  }
+
   Point2D operator +(Point2D other) {
     return new Point2D(x + other.x, y + other.y);
   }
