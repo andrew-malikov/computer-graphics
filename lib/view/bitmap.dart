@@ -1,5 +1,7 @@
 import 'dart:html';
 
+import 'package:GraphicsApp/data/color.dart';
+
 class Bitmap {
   CanvasElement _canvas;
   CanvasRenderingContext2D _context;
@@ -9,14 +11,19 @@ class Bitmap {
     _context = canvas.getContext('2d');
   }
 
-  void setPixel(num x, num y, num size, String color) {
-    context.fillStyle = color;
+  void setPixel(num x, num y, num size, Color color) {
+    context.fillStyle = color.toRGBString();
     context.fillRect(x, y, size, size);
   }
 
-  String getPixel(num x, num y, num size) {
+  Color getPixel(num x, num y, num size) {
     ImageData data = context.getImageData(x, y, size, size);
-    return "rgba(${data.data[0]},${data.data[1]},${data.data[2]},${data.data[3]})";
+    return ColorBuilder.RGB(data.data[0], data.data[1], data.data[2]);
+  }
+
+  void fill(Color color) {
+    context.fillStyle = color.toRGBHexString();
+    context.fillRect(0, 0, canvas.width, canvas.height);
   }
 
   void clear() {
@@ -26,6 +33,10 @@ class Bitmap {
   void resize(int width, int height) {
     canvas.width = width;
     canvas.height = height;
+  }
+
+  bool containPoint(num x, num y) {
+    return canvas.width > x && canvas.height > y && x >= 0 && y >= 0;
   }
 
   CanvasElement get canvas => _canvas;

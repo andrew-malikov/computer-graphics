@@ -1,5 +1,7 @@
-import 'Package:GraphicsApp/view/bitmap.dart';
 import 'dart:html';
+
+import 'Package:GraphicsApp/view/bitmap.dart';
+import 'package:GraphicsApp/data/color.dart';
 
 class Layer {
   HtmlElement _root;
@@ -8,6 +10,7 @@ class Layer {
 
   Layer(int width, int height) {
     body = new Bitmap(width, height);
+    body.fill(DefaultColors['white']);
     preview = new Bitmap(width, height);
     _setUpComponent();
   }
@@ -16,7 +19,7 @@ class Layer {
     _root = new DivElement();
     _root.append(body.canvas);
     _root.append(preview.canvas);
-    _root.classes.add('layer'); 
+    _root.classes.add('layer');
   }
 
   void resize(int width, int height) {
