@@ -22,7 +22,7 @@ class CircleTool extends Tool {
   @override
   void registrateEvents() {
     events['click'] = _click;
-    events['move'] = _move;
+    events['mousemove'] = _move;
   }
 
   void _click(Event event) {

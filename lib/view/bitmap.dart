@@ -22,7 +22,7 @@ class Bitmap {
   }
 
   void fill(Color color) {
-    context.fillStyle = color.toRGBHexString();
+    context.fillStyle = color.toRGBAString();
     context.fillRect(0, 0, canvas.width, canvas.height);
   }
 

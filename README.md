@@ -5,12 +5,14 @@
 - Drawing lines
   - [x] CDA
   - [x] Bresengham
-- [x] Circle
-  - [ ] Arcs
+- Figures
+  - [ ] Elipse
+    - [x] Circle
+  - [ ] Arc
 - Fill
   - [x] Simple
   - [ ] Stroke
 
 ## Bugs
 
-- The preview does not display any changes
+...

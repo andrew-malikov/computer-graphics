@@ -37,6 +37,8 @@ class SimpleFill {
         points.add(point);
       }
     }
+    // manualy activate GC
+    points = null;
   }
 
   @Deprecated('To many calls')

@@ -25,6 +25,10 @@ class Channel {
   String toHexString() {
     return value.toRadixString(16);
   }
+
+  String toPercentString() {
+    return (value / 255).toStringAsPrecision(2).toString();
+  }
 }
 
 // TODO: Override hashCode() method
@@ -76,7 +80,7 @@ class Color {
 
   String toRGBAString() {
     return "rgba(${channels['red'].toString()},${channels['green'].toString()}," +
-        "${channels['blue'].toString()},${channels['alpha'].toString()})";
+        "${channels['blue'].toString()},${channels['alpha'].toPercentString()})";
   }
 
   String toRGBHexString() {
