@@ -18,24 +18,34 @@ class ToolMetadata {
   Icon get icon => _icon;
 }
 
+typedef void ToolEvent(Event event);
+
 abstract class Tool {
   ToolMetadata _metadata;
   Layer _layer;
+  Map<String, ToolEvent> _events;
 
   Tool(ToolMetadata metadata) {
     _metadata = metadata;
+    _events = new Map<String, ToolEvent>();
+    registrateEvents();
   }
 
-  void addEvents();
-  void removeEvents();
+  /// Called in the constructor to register events
+  void registrateEvents();
+
+  void addEvents() {
+    for (String key in _events.keys)
+      layer.preview.canvas.addEventListener(key, _events[key]);
+  }
+
+  void removeEvents() {
+    for (String key in _events.keys)
+      layer.preview.canvas.removeEventListener(key, _events[key]);
+  }
+
   void unsetLayer() {
     layer = null;
-  }
-
-  Point2D computePoint(MouseEvent event, Bitmap bitmap) {
-    Rectangle<num> border = bitmap.canvas.getBoundingClientRect();
-    return new Point2D(
-        event.client.x - border.left, event.client.y - border.top);
   }
 
   ToolMetadata get metadata => _metadata;
@@ -46,4 +56,13 @@ abstract class Tool {
     _layer = layer;
     if (layer != null) addEvents();
   }
+
+  bool hasLayer() => layer != null;
+
+  Map<String, ToolEvent> get events => _events;
+}
+
+Point2D computePoint(MouseEvent event, Bitmap bitmap) {
+  Rectangle<num> border = bitmap.canvas.getBoundingClientRect();
+  return new Point2D(event.client.x - border.left, event.client.y - border.top);
 }

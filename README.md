@@ -13,5 +13,4 @@
 
 ## Bugs
 
-- The preview does not display any changes.
-- Deleting events from the layer does not work
+- The preview does not display any changes

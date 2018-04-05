@@ -14,16 +14,11 @@ class SimpleFillTool extends Tool {
   }
 
   @override
-  void addEvents() {
-    layer.body.canvas.addEventListener('click', click);
+  void registrateEvents() {
+    events['click'] = _click;
   }
 
-  @override
-  void removeEvents() {
-    layer.body.canvas.removeEventListener('click', click);
-  }
-
-  void click(Event event) {
+  void _click(Event event) {
     window.requestAnimationFrame((time) {
       Point2D point = computePoint(event as MouseEvent, layer.body);
       tool.draw(layer.body, point);

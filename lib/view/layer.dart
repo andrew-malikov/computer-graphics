@@ -17,9 +17,11 @@ class Layer {
 
   void _setUpComponent() {
     _root = new DivElement();
-    _root.append(body.canvas);
     _root.append(preview.canvas);
+    _root.append(body.canvas);
     _root.classes.add('layer');
+    body.canvas.classes.add('body');
+    preview.canvas.classes.add('preview');
   }
 
   void resize(int width, int height) {

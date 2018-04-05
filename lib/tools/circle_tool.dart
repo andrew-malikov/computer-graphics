@@ -1,13 +1,14 @@
 import 'dart:html';
 
 import 'Package:GraphicsApp/tools/tool.dart';
-import 'Package:GraphicsApp/tools/base_tool.dart';
 import 'Package:GraphicsApp/algorithms/circle.dart';
 import 'Package:GraphicsApp/math/point.dart';
 import 'Package:GraphicsApp/math/segment.dart';
 import 'Package:GraphicsApp/data/icons.dart';
 
-class CircleTool extends BaseTool {
+enum State { SetStartPoint, SetEndPoint }
+
+class CircleTool extends Tool {
   State _state;
   Point2D _point;
   Circle _tool;
@@ -15,10 +16,16 @@ class CircleTool extends BaseTool {
   CircleTool(Circle tool) : super(new ToolMetadata('circle', Icons['circle'])) {
     _state = State.SetStartPoint;
     _point = Point2DBuilder.defaultPoint();
-    _tool = tool;
+    this.tool = tool;
   }
 
-  void click(Event event) {
+  @override
+  void registrateEvents() {
+    events['click'] = _click;
+    events['move'] = _move;
+  }
+
+  void _click(Event event) {
     window.requestAnimationFrame((time) {
       MouseEvent mouseEvent = event as MouseEvent;
       if (state == State.SetStartPoint) {
@@ -33,7 +40,7 @@ class CircleTool extends BaseTool {
     });
   }
 
-  void move(Event event) {
+  void _move(Event event) {
     window.requestAnimationFrame((time) {
       if (_state != State.SetEndPoint) return;
       MouseEvent mouseEvent = event as MouseEvent;
