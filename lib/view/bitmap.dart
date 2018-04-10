@@ -47,4 +47,7 @@ class Bitmap {
   }
 
   CanvasRenderingContext2D get context => _context;
+
+  num get width => canvas.width;
+  num get height => canvas.height;
 }
