@@ -5,6 +5,7 @@ import 'package:GraphicsApp/math/point.dart';
 import 'package:GraphicsApp/view/bitmap.dart';
 import 'package:GraphicsApp/view/bitmap_utils.dart';
 
+// TODO: Rewrite
 class StrokeFill {
   Color _color;
 

@@ -2,16 +2,16 @@
 
 ## Development plan (*TODO*)
 
-- Drawing lines
+- Lines
   - [x] CDA
   - [x] Bresengham
 - Figures
-  - [ ] Elipse
+  - [ ] Ellipse
     - [x] Circle
   - [ ] Arc
 - Fill
   - [x] Simple
-  - [ ] Stroke
+  - [x] Stroke
 
 ## Bugs
 
