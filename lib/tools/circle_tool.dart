@@ -34,7 +34,7 @@ class CircleTool extends Tool {
       } else {
         Point2D endPoint = computePoint(mouseEvent, layer.body);
         tool.draw(layer.body, new Segment(point, endPoint));
-        layer.preview.clear();
+        layer.preview.clearAll();
         _state = State.SetStartPoint;
       }
     });
@@ -44,7 +44,7 @@ class CircleTool extends Tool {
     window.requestAnimationFrame((time) {
       if (_state != State.SetEndPoint) return;
       MouseEvent mouseEvent = event as MouseEvent;
-      layer.preview.clear();
+      layer.preview.clearAll();
       Point2D endPoint = computePoint(mouseEvent, layer.preview);
       tool.draw(layer.preview, new Segment(_point, endPoint));
     });

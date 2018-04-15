@@ -1,3 +1,6 @@
+/// for beyond and future
+typedef T Operation<T>(T value1, T value2);
+
 class Point2D {
   num _x;
   num _y;
@@ -11,8 +14,16 @@ class Point2D {
     y = y.round();
   }
 
+  Point2D operator /(num value) {
+    return new Point2D(x / value, y / value);
+  }
+
   Point2D operator +(Point2D other) {
     return new Point2D(x + other.x, y + other.y);
+  }
+
+  Point2D operator -(Point2D other) {
+    return new Point2D(x - other.x, y - other.y);
   }
 
   num get x => _x;

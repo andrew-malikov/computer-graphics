@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:GraphicsApp/data/color.dart';
+import 'package:GraphicsApp/view/pixels.dart';
 
 class Bitmap {
   CanvasElement _canvas;
@@ -12,7 +13,11 @@ class Bitmap {
   }
 
   void setPixel(num x, num y, num size, Color color) {
-    context.fillStyle = color.toRGBString();
+    setRawPixel(x, y, size, color.toRGBString());
+  }
+
+  void setRawPixel(num x, num y, num size, String color) {
+    context.fillStyle = color;
     context.fillRect(x, y, size, size);
   }
 
@@ -21,13 +26,24 @@ class Bitmap {
     return ColorBuilder.RGB(data.data[0], data.data[1], data.data[2]);
   }
 
+  Pixels<T> getPixels<T>(
+      num x, num y, num width, num height, DataToColor<T> converter) {
+    var imageData = context.getImageData(x, y, width, height);
+    var pixels = new Pixels<T>(imageData, converter);
+    return pixels;
+  }
+
   void fill(Color color) {
     context.fillStyle = color.toRGBAString();
     context.fillRect(0, 0, canvas.width, canvas.height);
   }
 
-  void clear() {
+  void clearAll() {
     context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  void clearArea(num x, num y, num width, num height) {
+    context.clearRect(x, y, width, height);
   }
 
   void resize(int width, int height) {
