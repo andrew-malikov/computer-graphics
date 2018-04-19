@@ -10,6 +10,7 @@ import 'Package:GraphicsApp/view/layer.dart';
 
 import 'package:GraphicsApp/algorithms/simple_fill.dart';
 import 'package:GraphicsApp/algorithms/stroke_fill.dart';
+import 'package:GraphicsApp/algorithms/translate.dart';
 import 'package:GraphicsApp/components/colorPicker.dart';
 import 'package:GraphicsApp/components/toolbox.dart';
 import 'package:GraphicsApp/data/color.dart';
@@ -18,6 +19,8 @@ import 'package:GraphicsApp/tools/simple_fill_tool.dart';
 import 'package:GraphicsApp/tools/stroke_fill_tool.dart';
 import 'package:GraphicsApp/tools/tools.dart';
 import 'package:GraphicsApp/components/card.dart';
+import 'package:GraphicsApp/tools/translate_tool.dart';
+import 'package:GraphicsApp/view/pixels.dart';
 
 void initializeApp() {
   Layer mainLayer = new Layer(640, 480);
@@ -36,6 +39,8 @@ void initializeApp() {
   StrokeFillTool strokeFillTool =
       new StrokeFillTool(new StrokeFill(colorPicker.color));
 
+  TranslateTool translateTool = new TranslateTool(new Translate());
+
   Tools tools = new Tools();
   Toolbox toolbox = new Toolbox(tools);
 
@@ -44,6 +49,7 @@ void initializeApp() {
   tools.addTool(circle);
   tools.addTool(simpleFillTool);
   tools.addTool(strokeFillTool);
+  tools.addTool(translateTool);
 
   CardComponent toolsCard = new CardComponent("Tools", toolbox.render);
   CardComponent colorPickerCard =
