@@ -10,7 +10,7 @@ class Layer {
 
   Layer(int width, int height) {
     body = new Bitmap(width, height);
-    body.fill(DefaultColors['white']);
+    body.fillAll(DefaultColors['white']);
     preview = new Bitmap(width, height);
     _setUpComponent();
   }

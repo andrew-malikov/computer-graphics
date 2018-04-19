@@ -37,9 +37,13 @@ class Bitmap {
     return getPixels(0, 0, width, height, converter);
   }
 
-  void fill(Color color) {
-    context.fillStyle = color.toRGBAString();
-    context.fillRect(0, 0, canvas.width, canvas.height);
+  void fillAll(Color color) {
+    fillArea(0, 0, canvas.width, canvas.height, color);
+  }
+
+  void fillArea(num x, num y, num width, num height, Color color) {
+    context.fillStyle = color.toRGBAHexString();
+    context.fillRect(x, y, width, height);
   }
 
   void clearAll() {
