@@ -2,7 +2,9 @@ import 'dart:collection';
 
 import 'Package:GraphicsApp/view/bitmap.dart';
 import 'Package:GraphicsApp/math/point.dart';
+import 'dart:html';
 import 'package:GraphicsApp/data/color.dart';
+import 'package:GraphicsApp/view/pixels.dart';
 
 class SimpleFill {
   Color _color;
@@ -12,49 +14,63 @@ class SimpleFill {
   }
 
   void draw(Bitmap bitmap, Point2D basePoint) {
+    var converter = DataToColorConvertors.DataToFullStringColor();
+    Pixels<String> pixels = bitmap.getAllPixels(converter);
+
     basePoint.round();
 
-    Color baseColor = bitmap.getPixel(basePoint.x, basePoint.y, 1);
+    String baseColor = pixels.getPixel(basePoint.x, basePoint.y);
     ListQueue<Point2D> points = new ListQueue<Point2D>();
 
     points.add(basePoint);
-    bitmap.setPixel(basePoint.x, basePoint.y, 1, color);
+    pixels.setPixel(basePoint.x, basePoint.y, null);
 
     while (points.isNotEmpty) {
       Point2D point = points.removeFirst();
 
-      List<Point2D> nearPoints = [
-        Point2DManipulator.moveUp(point),
-        Point2DManipulator.moveRight(point),
-        Point2DManipulator.moveDown(point),
-        Point2DManipulator.moveLeft(point)
-      ];
+      bitmap.setPixel(point.x, point.y, 1, color);
 
-      for (var point in nearPoints) {
-        if (!bitmap.containPoint(point.x, point.y) ||
-            bitmap.getPixel(point.x, point.y, 1) != baseColor) continue;
-        bitmap.setPixel(point.x, point.y, 1, color);
-        points.add(point);
+      var newX = point.x;
+      var newY = point.y - 1;
+
+      if (newY >= 0) {
+        if (pixels.getPixel(newX, newY) == baseColor) {
+          points.add(new Point2D(newX, newY));
+          pixels.setPixel(newX, newY, null);
+        }
+      }
+
+      newX = point.x + 1;
+      newY = point.y;
+      if (newX < pixels.width) {
+        if (pixels.getPixel(newX, newY) == baseColor) {
+          points.add(new Point2D(newX, newY));
+          pixels.setPixel(newX, newY, null);
+        }
+      }
+
+      newX = point.x;
+      newY = point.y + 1;
+      if (newY < pixels.height) {
+        if (pixels.getPixel(newX, newY) == baseColor) {
+          points.add(new Point2D(newX, newY));
+          pixels.setPixel(newX, newY, null);
+        }
+      }
+
+      newX = point.x - 1;
+      newY = point.y;
+      if (newX >= 0) {
+        if (pixels.getPixel(newX, newY) == baseColor) {
+          points.add(new Point2D(newX, newY));
+          pixels.setPixel(newX, newY, null);
+        }
       }
     }
-    // manualy activate GC
-    points = null;
-  }
 
-  @Deprecated('To many calls')
-  void _addNearPointsToQueue(
-      Bitmap bitmap, Point2D point, ListQueue<Point2D> queue, Color baseColor) {
-    List<Point2D> checkPoints = [
-      Point2DManipulator.moveUp(point),
-      Point2DManipulator.moveRight(point),
-      Point2DManipulator.moveDown(point),
-      Point2DManipulator.moveLeft(point)
-    ];
-    for (Point2D point in checkPoints) {
-      if (!bitmap.containPoint(point.x, point.y) || queue.contains(point))
-        continue;
-      if (bitmap.getPixel(point.x, point.y, 1) == baseColor) queue.add(point);
-    }
+    // manualy activate GC
+    pixels.dispose();
+    points = null;
   }
 
   Color get color => _color;

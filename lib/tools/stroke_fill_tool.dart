@@ -15,7 +15,7 @@ class StrokeFillTool extends Tool {
 
   @override
   void registrateEvents() {
-    events['click'] = _debugClick;
+    events['click'] = _click;
   }
 
   void _click(Event event) {
@@ -23,11 +23,6 @@ class StrokeFillTool extends Tool {
       Point2D point = computePoint(event as MouseEvent, layer.body);
       tool.draw(layer.body, point);
     });
-  }
-
-  void _debugClick(Event event) {
-    Point2D point = computePoint(event as MouseEvent, layer.body);
-    tool.draw(layer.body, point);
   }
 
   StrokeFill get tool => _tool;
