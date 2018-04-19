@@ -2,6 +2,7 @@ import 'dart:html';
 
 typedef T DataToColor<T>(List<int> data);
 
+/// Represent *color* List
 class Pixels<T> {
   List<T> _pixels;
   int _width;
@@ -25,8 +26,30 @@ class Pixels<T> {
     return pixels;
   }
 
+  /// Gets access to the color by coordinates.
+  ///
+  /// Bounds
+  /// - `x`
+  ///   - from `0`
+  ///   - to `width -1`
+  /// - `y`
+  ///   - from `0`
+  ///   - height `-1`
   T getPixel(int x, int y) {
     return _pixels[y * _width + x];
+  }
+
+  /// Set *color* by coordinates
+  ///
+  /// Bounds
+  /// - `x`
+  ///   - from `0`
+  ///   - to `width -1`
+  /// - `y`
+  ///   - from `0`
+  ///   - height `-1`
+  void setPixel(int x, int y, T color) {
+    _pixels[y * _width + x] = color;
   }
 
   int get width => _width;
@@ -43,6 +66,12 @@ class DataToColorConvertors {
   static DataToColor<String> DataToShortStringColor() {
     return (List<int> data) {
       return "${data[0]}${data[1]}${data[2]}";
+    };
+  }
+
+  static DataToColor<String> DataToFullStringColor() {
+    return (List<int> data) {
+      return "rgb(${data[0]},${data[1]},${data[2]})";
     };
   }
 }

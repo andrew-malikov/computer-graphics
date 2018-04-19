@@ -33,6 +33,10 @@ class Bitmap {
     return pixels;
   }
 
+  Pixels<T> getAllPixels<T>(DataToColor<T> converter) {
+    return getPixels(0, 0, width, height, converter);
+  }
+
   void fill(Color color) {
     context.fillStyle = color.toRGBAString();
     context.fillRect(0, 0, canvas.width, canvas.height);
