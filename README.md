@@ -1,18 +1,11 @@
 # Simple web application for drawing
 
-## Development plan (*TODO*)
+## Development plan
 
-- Lines
-  - [x] CDA
-  - [x] Bresengham
-- Figures
-  - [ ] Ellipse
-    - [x] Circle
-  - [ ] Arc
-- Fill
-  - [x] Simple
-  - [x] Stroke
-
-## Bugs
+* raster layout
+  * draw basic shapes
+* vector layout
+  * draw polygons
+  * basic transformations
 
 ...
