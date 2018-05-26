@@ -19,6 +19,10 @@ html, body
   margin: 0
   padding: 10px
   font-family: 'Roboto', sans-serif
+  font-size: .9em
+
+.border
+  box-shadow: 0 2px 3px color(var(--black) alpha(10%)), 0 0 0 1px color(var(--black) alpha(10%))
 
 .layer
   box-shadow: 0 2px 3px color(var(--black) alpha(10%)), 0 0 0 1px color(var(--black) alpha(10%))
@@ -48,6 +52,28 @@ html, body
   margin-right: 10px
 
 .color-picker
-  padding: 2px
+  padding: 0.2em
   width: 5em
   height: 4em
+
+.horizontal-container
+  display: flex
+  flex-direction: row
+
+.vertical-container
+  display: flex
+  flex-direction: column
+
+.vertical-container > *
+  margin-top: .2em
+  margin-bottom: .2em
+
+.horizontal-container > *
+  margin-left: .2em
+  margin-right: .2em
+
+hr
+  margin: .6em
+
+.width-fit
+  width: fit-content
