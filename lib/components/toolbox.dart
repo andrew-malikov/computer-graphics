@@ -52,7 +52,7 @@ class Toolbox implements IObserver {
         item.icon == message.tool.metadata.icon;
       });
       buttons.remove(removedButton);
-      _root.childNodes.remove(removedButton.render);
+      _root.children.remove(removedButton.render);
     }
   }
 

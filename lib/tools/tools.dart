@@ -17,7 +17,7 @@ class TransmittedMessage {
 
 enum TransmittedState { Add, Remove, Set }
 
-class Tools implements IObserveable {
+class Tools implements IObservable {
   List<IObserver> _observers;
   List<Tool> _tools;
   Tool _currentTool;

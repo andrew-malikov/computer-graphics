@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:GraphicsApp/data/color.dart';
+import 'package:GraphicsApp/math/point.dart';
 import 'package:GraphicsApp/view/pixels.dart';
 
 class Bitmap {
@@ -19,6 +20,15 @@ class Bitmap {
   void setRawPixel(num x, num y, num size, String color) {
     context.fillStyle = color;
     context.fillRect(x, y, size, size);
+  }
+
+  void drawLine(num x1,num y1,num x2,num y2,num width,String color) {
+    context.strokeStyle = color;
+    context.lineWidth = width;
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.stroke();
   }
 
   Color getPixel(num x, num y, num size) {
@@ -61,6 +71,19 @@ class Bitmap {
 
   bool containPoint(num x, num y) {
     return canvas.width > x && canvas.height > y && x >= 0 && y >= 0;
+  }
+
+  Point2D computePoint(MouseEvent event) {
+    Rectangle<num> border = canvas.getBoundingClientRect();
+    return new Point2D(
+        event.client.x - border.left, event.client.y - border.top);
+  }
+
+  Point2D computeDecartPoint(MouseEvent event) {
+    Rectangle<num> border = canvas.getBoundingClientRect();
+    var x = event.client.x - border.left - width / 2;
+    var y = -(event.client.y - border.top) + height / 2;
+    return new Point2D(x, y);
   }
 
   CanvasElement get canvas => _canvas;
