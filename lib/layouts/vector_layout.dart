@@ -7,6 +7,7 @@ import 'package:GraphicsApp/data/icons.dart';
 import 'package:GraphicsApp/vector_mode/models/polygon_model.dart';
 import 'package:GraphicsApp/vector_mode/models/polygon_storage_model.dart';
 import 'package:GraphicsApp/vector_mode/models/polygons_model.dart';
+import 'package:GraphicsApp/vector_mode/renders/grid_render.dart';
 import 'package:GraphicsApp/vector_mode/renders/polygon_render.dart';
 import 'package:GraphicsApp/vector_mode/renders/render_metadata.dart';
 import 'package:GraphicsApp/vector_mode/widgets/clipped_polygon_build_widget.dart';
@@ -51,6 +52,7 @@ class VectorLayout {
 class VectorLayoutModel {
   RenderMetadata metadata;
   PolygonRender render;
+  GridRender grid;
 
   PolygonModel polygon;
   PolygonsModel polygons;
@@ -59,9 +61,10 @@ class VectorLayoutModel {
   VectorLayoutModel(Layer layer, Color color, num width) {
     metadata = new RenderMetadata(color, width);
     render = new PolygonRender(metadata);
+    grid = new GridRender();
     polygon = new PolygonModel();
     polygons = new PolygonsModel();
-    storage = new PolygonStorageModel(layer, render, polygons, polygon);
+    storage = new PolygonStorageModel(layer, render, grid, polygons, polygon);
   }
 }
 

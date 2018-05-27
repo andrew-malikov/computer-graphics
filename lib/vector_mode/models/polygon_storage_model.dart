@@ -1,6 +1,7 @@
 import 'package:GraphicsApp/vector_mode/arch/i_observer.dart';
 import 'package:GraphicsApp/vector_mode/models/polygon_model.dart';
 import 'package:GraphicsApp/vector_mode/models/polygons_model.dart';
+import 'package:GraphicsApp/vector_mode/renders/grid_render.dart';
 import 'package:GraphicsApp/vector_mode/renders/polygon_render.dart';
 import 'package:GraphicsApp/view/bitmap.dart';
 import 'package:GraphicsApp/view/layer.dart';
@@ -10,16 +11,20 @@ class PolygonStorageModel implements IObserver {
   PolygonModel _polygon;
   Layer _layer;
   PolygonRender _render;
+  GridRender _grid;
 
   PolygonStorageModel(
-      this._layer, this._render, this._polygons, this._polygon) {
+      this._layer, this._render, this._grid, this._polygons, this._polygon) {
     _polygon.subscribeObserver(this);
     _polygons.subscribeObserver(this);
+
+    Update();
   }
 
   void _renderBody(Bitmap bitmap) {
     bitmap.clearAll();
 
+    _grid.render(bitmap);
     for (var polygon in _polygons.values) {
       _render.render(bitmap, polygon);
     }

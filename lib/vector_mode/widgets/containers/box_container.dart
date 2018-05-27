@@ -10,7 +10,7 @@ class BoxContainer extends Container {
   }
 
   void _setUpContainer() {
-    _root.classes.add("box");
+    _root.classes..add("basic-container")..add('border');
   }
 
   set content(HtmlElement element) {

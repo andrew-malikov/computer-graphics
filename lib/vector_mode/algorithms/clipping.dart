@@ -91,10 +91,10 @@ List<Point2D> clipping(List<Point2D> points, Border border) {
   var codes = new List<Code>();
   points.forEach((p) => codes.add(_computeCode(p, border)));
 
-  if (!(codes[0] * codes[1]).isZero) return null;
+  var clippedPoints = new List<Point2D>();
+  if (!(codes[0] * codes[1]).isZero) return clippedPoints;
   if (codes[0].isZero && codes[1].isZero) return points;
 
-  var clippedPoints = new List<Point2D>();
   for (var i = 0; i < codes.length; i++)
     if (codes[i].isZero) clippedPoints.add(points[i]);
 
